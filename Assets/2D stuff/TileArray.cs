@@ -51,11 +51,25 @@ public class TileArray : MonoBehaviour
         }
 
         //Starting tile
-        tileScripts[(fieldWidth / 2), 0].OpenSide(Tile.Side.Up);
-        tileScripts[(fieldWidth / 2), 0].OpenSide(Tile.Side.Down);
-        spriteUpdater.UpdateImage(tileScripts[(fieldWidth / 2), 0]);
+        Tile editTile = tileScripts[(fieldWidth / 2), 0];
+        editTile.EditOpen((1,0,1,0));
+        spriteUpdater.UpdateImage(editTile);
 
+        editTile = tileScripts[1, 0];
+        editTile.EditOpen((1, 1, 0, 0));
+        spriteUpdater.UpdateImage(editTile);
 
+        editTile = tileScripts[1, 1];
+        editTile.EditOpen((0, 1, 1, 0));
+        spriteUpdater.UpdateImage(editTile);
+
+        editTile = tileScripts[1, 2];
+        editTile.EditOpen((0, 0, 1, 1));
+        spriteUpdater.UpdateImage(editTile);
+
+        editTile = tileScripts[1, 3];
+        editTile.EditOpen((1, 0, 0, 1));
+        spriteUpdater.UpdateImage(editTile);
     }
 
     //Randomly open the paths in the array

@@ -8,44 +8,37 @@ public class Tile : MonoBehaviour
     
     public Vector3 center { get; private set; }
 
-    public bool up = false, right = false, down = false, left = false;
+    public int up = 0, right = 0, down = 0, left = 0;
 
-    public enum Side { Up, Right, Down, Left};
-
-    public Dictionary<(bool, bool, bool, bool), Sprite> sprite;
+    public Dictionary<(int, int, int, int), Sprite> sprite;
 
     //Basic constructor
 
     private void Awake()
     {
-        up = false;
-        right = false;
-        left = false;
-        down = false;
+        up = 0;
+        right = 0;
+        left = 0;
+        down = 0;
         center = this.transform.position;
     }
 
-    public void OpenSide(Side open)
+    public void EditOpen((int,int,int,int) opens)
     {
-        switch (open)
-        {
-            case Side.Up:
-                up = true;
-                break;
-            case Side.Right:
-                right = true;
-                break;
-            case Side.Down:
-                down = true;
-                break;
-            case Side.Left:
-                left = true;
-                break;
-        }
+        up = opens.Item1;
+        right = opens.Item2;
+        down = opens.Item3;
+        left = opens.Item4;
     }
 
     public void UpdateSprite(Sprite newSprite)
     {
         graphics.GetComponent<SpriteRenderer>().sprite = newSprite;
+    }
+
+    public void Rotate(float rotation)
+    {
+        graphics.transform.rotation = Quaternion.Euler(0, 0, -rotation);
+
     }
 }

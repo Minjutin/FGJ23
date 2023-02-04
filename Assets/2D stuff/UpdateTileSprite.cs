@@ -17,59 +17,70 @@ public class UpdateTileSprite : MonoBehaviour
     {
         Sprite newSprite;
 
-        (bool, bool, bool, bool) imageVector = (tile.up, tile.right, tile.down, tile.left);
+        (int, int, int, int) imageVector = (tile.up, tile.right, tile.down, tile.left);
         switch (imageVector)
         {
             //All open
-            case (true, true, true, true):
+            case (1, 1, 1, 1):
                 tile.UpdateSprite(tileSprites[6] as Sprite);
+                tile.Rotate(0f);
                 break;
 
             #region Three open
             //Three open
-            case (true, true, true, false):
+            case (1, 1, 1, 0):
                 tile.UpdateSprite(tileSprites[5] as Sprite);
+                tile.Rotate(90f);
                 break;
 
-            case (true, true, false, true):
+            case (1, 1, 0, 1):
                 tile.UpdateSprite(tileSprites[5] as Sprite);
+                tile.Rotate(0f);
                 break;
 
-            case (true, false, true, true):
+            case (1, 0, 1, 1):
                 tile.UpdateSprite(tileSprites[5] as Sprite);
+                tile.Rotate(270f);
                 break;
 
-            case (false, true, true, true):
+            case (0, 1, 1, 1):
                 tile.UpdateSprite(tileSprites[5] as Sprite);
+                tile.Rotate(180f);
                 break;
             #endregion
 
             #region Two open
             //Corner
 
-            case (true, true, false, false):
+            case (1, 1, 0, 0):
                 tile.UpdateSprite(tileSprites[4] as Sprite);
+                tile.Rotate(0f);
                 break;
 
-            case (true, false, false, true):
+            case (1, 0, 0, 1):
                 tile.UpdateSprite(tileSprites[2] as Sprite);
+                tile.Rotate(0f);
                 break;
 
-            case (false, true, true, false):
+            case (0, 1, 1, 0):
                 tile.UpdateSprite(tileSprites[2] as Sprite);
+                tile.Rotate(180f);
                 break;
 
-            case (false, false, true, true):
+            case (0, 0, 1, 1):
                 tile.UpdateSprite(tileSprites[2] as Sprite);
+                tile.Rotate(270f);
                 break;
 
             //Straight
-            case (true, false, true, false):
+            case (1, 0, 1, 0):
                 tile.UpdateSprite(tileSprites[3] as Sprite);
+                tile.Rotate(0f);
                 break;
 
-            case (false, true, false, true):
+            case (0, 1, 0, 1):
                 tile.UpdateSprite(tileSprites[3] as Sprite);
+                tile.Rotate(90f);
                 break;
 
             #endregion
@@ -77,27 +88,32 @@ public class UpdateTileSprite : MonoBehaviour
             #region One open
             // ONE OPEN
 
-            case (true, false, false, false):
+            case (1, 0, 0, 0):
                 tile.UpdateSprite(tileSprites[1] as Sprite);
+                tile.Rotate(0f);
                 break;
 
 
-            case (false, true, false, false):
+            case (0, 1, 0, 0):
                 tile.UpdateSprite(tileSprites[1] as Sprite);
+                tile.Rotate(90f);
                 break;
 
-            case (false, false, true, false):
+            case (0, 0, 1, 0):
                 tile.UpdateSprite(tileSprites[1] as Sprite);
+                tile.Rotate(180f);
                 break;
 
-            case (false, false, false, true):
+            case (0, 0, 0, 1):
                 tile.UpdateSprite(tileSprites[1] as Sprite);
+                tile.Rotate(270f);
                 break;
             #endregion
 
             //ZERO OPEN
-            case (false, false, false, false):
+            case (0, 0, 0, 0):
                 tile.UpdateSprite(tileSprites[0] as Sprite);
+                tile.Rotate(0f);
                 break;
         }
     }
