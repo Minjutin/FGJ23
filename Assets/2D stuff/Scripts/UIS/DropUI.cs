@@ -29,7 +29,6 @@ public class DropUI : MonoBehaviour
 
         foreach ((int,string) i in SM.collectedSecrets)
         {
-            Debug.Log(i.Item2);
             bois.Add(i.Item2);
             //Initialise the Text to say the first value of the Dropdown
         }
