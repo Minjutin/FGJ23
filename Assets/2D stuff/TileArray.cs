@@ -26,7 +26,10 @@ public class TileArray : MonoBehaviour
 
         //Fetch sprites and size
         tileSprites = Resources.LoadAll("LabyrinthPieces", typeof(Sprite));
-        tileSize = tileGO.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite.rect.width;
+        tileSize = 30 * tileGO.transform.localScale.x;
+
+        //Other
+        leftTilePos = this.transform.position;
     }
 
     private void Start()
@@ -41,9 +44,9 @@ public class TileArray : MonoBehaviour
 
             for(int j = 0; j < fieldHeight; j++)
             {
+                tileGO.name = "Tile [" + i + "," + j + "]";
                 tileGOs[i, j] = 
-                Instantiate(tileGO, leftTilePos + new Vector3(tileSize * i, tileSize * j, 0), Quaternion.identity,this.transform) as GameObject;
-                tileGO.name = "Tile ["+i+","+j+"]";
+                Instantiate(tileGO, leftTilePos + new Vector3(tileSize * i, -tileSize * j, 0), Quaternion.identity,this.transform) as GameObject;
                 tileScripts[i, j] = tileGOs[i, j].GetComponent<Tile>();
             }
         }
