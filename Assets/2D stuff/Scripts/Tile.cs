@@ -34,17 +34,28 @@ public class Tile : MonoBehaviour
         right = opens.Item2;
         down = opens.Item3;
         left = opens.Item4;
-
-        if (OpenCount() == 1)
-        {
-            hasSecret = true;
-            secret = Instantiate(FindObjectOfType<SecretManager>().secret, center, Quaternion.identity, this.transform) as GameObject; 
-        }
     }
 
     public void UpdateSprite(Sprite newSprite)
     {
         graphics.GetComponent<SpriteRenderer>().sprite = newSprite;
+
+        if (OpenCount() == 1)
+        {
+            addSecret();
+        }
+    }
+
+    public void addSecret()
+    {
+        hasSecret = true;
+        secret = Instantiate(FindObjectOfType<SecretManager>().secret, center, Quaternion.identity, this.transform) as GameObject;
+    }
+
+    public void removeSecret()
+    {
+        hasSecret = false;
+        Destroy(secret);
     }
 
     public void Rotate(float rotation)
