@@ -24,21 +24,29 @@ public class Player2DMove : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow));
+        
+        //Check the latest direction
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             key = "left";
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) ;
+        if (Input.GetKeyDown(KeyCode.RightArrow)) 
         {
             key = "right";
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) ;
+        if (Input.GetKeyDown(KeyCode.DownArrow)) 
         {
             key = "down";
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) ;
+        if (Input.GetKeyDown(KeyCode.UpArrow)) 
         {
             key = "up";
+        }
+
+        //Check if it's a dead end
+        if (Input.GetKeyDown(KeyCode.Space) && currentTile.OpenCount()==1)
+        {
+            //TODO Get a secret
         }
     }
 
@@ -99,10 +107,6 @@ public class Player2DMove : MonoBehaviour
                 yield return BasicLerp(player, currentTile.center, nextTile.center, 0.4f);
 
                 currentTile = nextTile;
-            }
-            else
-            {
-                Debug.Log("No next Tile!");
             }
 
             nextTile = null;
