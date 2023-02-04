@@ -7,7 +7,12 @@ public class Player2DMove : MonoBehaviour
     TileArray tileArray;
     [SerializeField] GameObject player;
 
-    Tile cTile;
+    string prevDir;
+    int x, y;
+
+    [SerializeField] Tile currentTile, nextTile;
+
+    string key = "";
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +22,92 @@ public class Player2DMove : MonoBehaviour
         StartCoroutine(Move());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow));
+        {
+            key = "left";
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) ;
+        {
+            key = "right";
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) ;
+        {
+            key = "down";
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) ;
+        {
+            key = "up";
+        }
+    }
+
     IEnumerator Move()
     {
         yield return new WaitForSeconds(0.5f);
-        
-        cTile = tileArray.tileScripts[tileArray.fieldWidth / 2, 0];
-        player.transform.position = cTile.center;
+
+        x = tileArray.fieldWidth / 2;
+        y = 0;
+
+        currentTile = tileArray.tileScripts[x, y];
+
+        player.transform.position = currentTile.center;
+
+        //Start plah plah
+        while (true)
+        {
+            yield return new WaitForSeconds(0.01f);
+            //Find the next.
+            //Check first if there is a tile open in a direction of pressed key
+            if(key != prevDir)
+            {
+                switch (key)
+                {
+                    case "up":
+                        if(y>0 && currentTile.up == 1)
+                        {
+                            y--;
+                            nextTile = tileArray.tileScripts[x, y];
+                        }
+                        break;
+                    case "right":
+                        if (x < tileArray.fieldWidth-1 && currentTile.right == 1)
+                        {
+                            x++;
+                            nextTile = tileArray.tileScripts[x, y];
+                        }
+                        break;
+                    case "down":
+                        if (y < tileArray.fieldHeight-1 && currentTile.down == 1)
+                        {
+                            y++;
+                            nextTile = tileArray.tileScripts[x, y];
+                        }
+                        break;
+                    case "left":
+                        if (x > 0 && currentTile.left == 1)
+                        {
+                            x--;
+                            nextTile = tileArray.tileScripts[x, y];
+                        }
+                        break;
+                }
+            }
+
+            if (nextTile != null)
+            {
+                yield return BasicLerp(player, currentTile.center, nextTile.center, 0.4f);
+
+                currentTile = nextTile;
+            }
+            else
+            {
+                Debug.Log("No next Tile!");
+            }
+
+            nextTile = null;
+        }
+
     }
 
     public IEnumerator BasicLerp(GameObject objectToLerp, Vector3 start, Vector3 end, float lerpDuration)
