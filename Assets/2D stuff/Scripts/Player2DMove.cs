@@ -6,13 +6,14 @@ public class Player2DMove : MonoBehaviour
 {
     TileArray tileArray;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject chooseCanvas;
 
     string prevDir;
     int x, y;
 
     [SerializeField] Tile currentTile, nextTile;
 
-    string key = "";
+    string key = "down";
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +45,12 @@ public class Player2DMove : MonoBehaviour
         }
 
         //Check if it's a dead end
-        if (Input.GetKeyDown(KeyCode.Space) && currentTile.OpenCount()==1)
+        if (Input.GetKeyDown(KeyCode.Space) && currentTile.OpenCount()==1 && currentTile.hasSecret)
         {
-            //TODO Get a secret
+            (int, string) newSecret = FindObjectOfType<SecretManager>().GetNewSecret();
+
+            FindObjectOfType<PlayerManager>().AddFoundSecret(newSecret);
+            currentTile.removeSecret();
         }
     }
 
@@ -77,6 +81,19 @@ public class Player2DMove : MonoBehaviour
                             y--;
                             nextTile = tileArray.tileScripts[x, y];
                         }
+
+                        //If start tile, go out and END
+                        else if (x == tileArray.fieldWidth / 2 &&
+                        y == 0)
+                        {
+                            yield return BasicLerp(player, currentTile.center, currentTile.center + new Vector3(0,8,0), 0.6f);
+
+                            player.SetActive(false);
+                            chooseCanvas.SetActive(true);
+
+                            yield break;
+                        }
+
                         break;
                     case "right":
                         if (x < tileArray.fieldWidth-1 && currentTile.right == 1)
