@@ -6,12 +6,12 @@ using TMPro;
 public class ScriptCanvas2D : MonoBehaviour
 {
     TextMeshProUGUI textUGUI;
-    PlayerManager PM;
+    SecretManager SM;
 
     void Start()
     {
         textUGUI = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        PM = FindObjectOfType<PlayerManager>();
+        SM = FindObjectOfType<SecretManager>();
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class ScriptCanvas2D : MonoBehaviour
         string newText = "";
         int many = 1;
 
-        foreach((int, string) i in PM.collectedSecrets)
+        foreach((int, string) i in SM.collectedSecrets)
         {
             newText = newText + many + ". " + i.Item2 + "\n\n";
             many++;

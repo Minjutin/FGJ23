@@ -49,7 +49,7 @@ public class Player2DMove : MonoBehaviour
         {
             (int, string) newSecret = FindObjectOfType<SecretManager>().GetNewSecret();
 
-            FindObjectOfType<PlayerManager>().AddFoundSecret(newSecret);
+            FindObjectOfType<SecretManager>().AddFoundSecret(newSecret);
             currentTile.removeSecret();
         }
     }

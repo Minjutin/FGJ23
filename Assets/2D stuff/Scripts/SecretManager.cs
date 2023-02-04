@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SecretManager : MonoBehaviour
 {
+
+    public List<(int, string)> collectedSecrets;
+    public GameObject tweetCanvas;
+    public (int, string) chosen;
+
     public GameObject secret;
 
     string[] tier1 = { "enjoys taking pictures of pigeons a bit TOO much", };
@@ -30,8 +35,6 @@ public class SecretManager : MonoBehaviour
 
         string secret;
 
-        Debug.Log(tierHelp);
-
         switch (tier)
         {
             case 1:
@@ -53,5 +56,23 @@ public class SecretManager : MonoBehaviour
             default:
                 return (0, "");
         }
+    }
+
+    private void Awake()
+    {
+        collectedSecrets = new List<(int, string)>();
+    }
+
+    public void AddFoundSecret((int, string) newSecret)
+    {
+        collectedSecrets.Add(newSecret);
+        FindObjectOfType<ScriptCanvas2D>().EditText();
+    }
+
+    //Post iiit
+    public void PostSecret()
+    {
+        tweetCanvas.SetActive(true);
+        GameObject.Find("ChooseSecretCanvas").SetActive(false);
     }
 }
