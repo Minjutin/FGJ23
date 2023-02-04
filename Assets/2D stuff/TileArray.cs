@@ -8,9 +8,10 @@ public class TileArray : MonoBehaviour
     [SerializeField] int fieldHeight = 6;
 
     Vector3 leftTilePos;
-    float tileSize;
+    public float tileSize;
 
-    Tile[,] tiles;
+    GameObject[,] tileGOs;
+    Tile[,] tileScripts;
 
     private Object[] tileSprites;
 
@@ -19,8 +20,13 @@ public class TileArray : MonoBehaviour
 
     private void Awake()
     {
-        tiles = new Tile[fieldWidth-1, fieldHeight-1];
+        //Create arrays
+        tileGOs = new GameObject[fieldWidth, fieldHeight];
+        tileScripts = new Tile[fieldWidth, fieldHeight];
+
+        //Fetch sprites and size
         tileSprites = Resources.LoadAll("LabyrinthPieces", typeof(Sprite));
+        tileSize = tileGO.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite.rect.width;
     }
 
     private void Start()
@@ -35,16 +41,16 @@ public class TileArray : MonoBehaviour
 
             for(int j = 0; j < fieldHeight; j++)
             {
-                Tile tileBoi = new Tile(leftTilePos + new Vector3(tileSize * i, tileSize * j, 0));
-
-                tiles[i, j] = tileBoi;
-                Instantiate(tileGO, tileBoi.center, Quaternion.identity);
+                tileGOs[i, j] = 
+                Instantiate(tileGO, leftTilePos + new Vector3(tileSize * i, tileSize * j, 0), Quaternion.identity,this.transform) as GameObject;
+                tileGO.name = "Tile ["+i+","+j+"]";
+                tileScripts[i, j] = tileGOs[i, j].GetComponent<Tile>();
             }
         }
 
-        tiles[(fieldWidth / 2) - 2, 0].OpenSide(Tile.Side.Up);
-        tiles[(fieldWidth / 2) - 2, 0].OpenSide(Tile.Side.Down);
-        UpdateImage(tiles[(fieldWidth / 2) - 2, 0]);
+        tileScripts[(fieldWidth / 2) - 2, 0].OpenSide(Tile.Side.Up);
+        tileScripts[(fieldWidth / 2) - 2, 0].OpenSide(Tile.Side.Down);
+        UpdateImage(tileScripts[(fieldWidth / 2) - 2, 0]);
     }
 
     //Randomly open the paths in the array
