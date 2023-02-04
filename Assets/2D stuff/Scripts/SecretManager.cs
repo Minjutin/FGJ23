@@ -117,11 +117,4 @@ public class SecretManager : MonoBehaviour
         collectedSecrets.Add(newSecret);
         FindObjectOfType<ScriptCanvas2D>().EditText();
     }
-
-    //Post iiit
-    public void PostSecret()
-    {
-        tweetCanvas.SetActive(true);
-        GameObject.Find("ChoiceCanvas").SetActive(false);
-    }
 }

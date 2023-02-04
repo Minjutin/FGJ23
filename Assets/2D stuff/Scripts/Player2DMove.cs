@@ -13,7 +13,7 @@ public class Player2DMove : MonoBehaviour
 
     [SerializeField] Tile currentTile, nextTile;
 
-    string key = "down";
+    string key = "right";
 
     // Start is called before the first frame update
     void Start()
@@ -88,9 +88,7 @@ public class Player2DMove : MonoBehaviour
                         {
                             yield return BasicLerp(player, currentTile.center, currentTile.center + new Vector3(0,8,0), 0.6f);
 
-                            player.SetActive(false);
-                            chooseCanvas.SetActive(true);
-
+                            FindObjectOfType<GameManager>().OpenChoice();
                             yield break;
                         }
 
