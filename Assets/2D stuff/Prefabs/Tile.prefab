@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphics: {fileID: 248926620291902807}
   inited: 0
+  hasSecret: 0
   up: 0
   right: 0
   down: 0

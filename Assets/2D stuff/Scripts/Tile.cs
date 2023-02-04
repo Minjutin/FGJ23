@@ -8,11 +8,13 @@ public class Tile : MonoBehaviour
     
     public Vector3 center { get; private set; }
 
-    public bool inited = false;
+    public bool inited = false, hasSecret = false;
 
     public int up = 0, right = 0, down = 0, left = 0;
 
     public Dictionary<(int, int, int, int), Sprite> sprite;
+
+    GameObject secret;
 
     //Basic constructor
 
@@ -32,6 +34,12 @@ public class Tile : MonoBehaviour
         right = opens.Item2;
         down = opens.Item3;
         left = opens.Item4;
+
+        if (OpenCount() == 1)
+        {
+            hasSecret = true;
+            secret = Instantiate(FindObjectOfType<SecretManager>().secret, center, Quaternion.identity, this.transform) as GameObject; 
+        }
     }
 
     public void UpdateSprite(Sprite newSprite)
@@ -43,5 +51,10 @@ public class Tile : MonoBehaviour
     {
         graphics.transform.rotation = Quaternion.Euler(0, 0, -rotation);
 
+    }
+
+    public int OpenCount()
+    {
+        return up + down + left + right;
     }
 }
