@@ -12,11 +12,20 @@ public class TileArray : MonoBehaviour
 
     Tile[,] tiles;
 
-    [SerializeField] GameObject tile;
+    private Object[] tileSprites;
+
+
+    [SerializeField] GameObject tileGO;
 
     private void Awake()
     {
         tiles = new Tile[fieldWidth-1, fieldHeight-1];
+        tileSprites = Resources.LoadAll("LabyrinthPieces", typeof(Sprite));
+    }
+
+    private void Start()
+    {
+        initializeArray();
     }
 
     //Create array of tiles
@@ -29,6 +38,7 @@ public class TileArray : MonoBehaviour
                 Tile tileBoi = new Tile(leftTilePos + new Vector3(tileSize * i, tileSize * j, 0));
 
                 tiles[i, j] = tileBoi;
+                Instantiate(tileGO, tileBoi.center, Quaternion.identity);
             }
         }
 
@@ -107,7 +117,7 @@ public class TileArray : MonoBehaviour
             // ONE OPEN
 
             case (true, false, false, false):
-
+                
                 break;
 
 
@@ -126,7 +136,7 @@ public class TileArray : MonoBehaviour
 
             //ZERO OPEN
             case (false, false, false, false):
-
+                tile.UpdateSprite(tileSprites[0] as Sprite);
                 break;
         }
     }

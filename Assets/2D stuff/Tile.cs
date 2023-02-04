@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Vector3 center;
+    [SerializeField] GameObject graphics;
+    
+    public Vector3 center { get; private set; }
+
     public bool up = false, right = false, down = false, left = false;
 
     public enum Side { Up, Right, Down, Left};
 
     public Dictionary<(bool, bool, bool, bool), Sprite> sprite;
-
-    private Object[] tiles;
 
     //Basic constructor
     public Tile(Vector3 _center)
@@ -45,5 +46,10 @@ public class Tile : MonoBehaviour
                 left = true;
                 break;
         }
+    }
+
+    public void UpdateSprite(Sprite newSprite)
+    {
+        graphics.GetComponent<SpriteRenderer>().sprite = newSprite;
     }
 }
