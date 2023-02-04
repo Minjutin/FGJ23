@@ -27,19 +27,19 @@ public class Player2DMove : MonoBehaviour
     {
         
         //Check the latest direction
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             key = "left";
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) 
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) 
         {
             key = "right";
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) 
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) 
         {
             key = "down";
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) 
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) )
         {
             key = "up";
         }

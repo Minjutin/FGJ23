@@ -26,8 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        if(rb!= null)
-        rb.AddForce(new Vector3(0, -150f, 0), ForceMode.Impulse);
+        transform.position =  new Vector3(transform.position.x,-8,transform.position.z);
     }
 
     private void Update()

@@ -18,7 +18,7 @@ public class TileArray : MonoBehaviour
 
     [SerializeField] UpdateTileSprite spriteUpdater; 
 
-    private void Awake()
+    private void OnEnable()
     {
         //Create arrays
         tileGOs = new GameObject[fieldWidth, fieldHeight];
@@ -29,10 +29,7 @@ public class TileArray : MonoBehaviour
 
         //Other
         leftTilePos = this.transform.position;
-    }
 
-    private void Start()
-    {
         initializeArray();
     }
 
