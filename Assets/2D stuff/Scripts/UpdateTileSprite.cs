@@ -13,10 +13,8 @@ public class UpdateTileSprite : MonoBehaviour
         tileSprites = Resources.LoadAll("LabyrinthPieces", typeof(Sprite));
     }
 
-    public void UpdateImage(Tile tile)
+    public void UpdateSprite(Tile tile)
     {
-        Sprite newSprite;
-
         (int, int, int, int) imageVector = (tile.up, tile.right, tile.down, tile.left);
         switch (imageVector)
         {

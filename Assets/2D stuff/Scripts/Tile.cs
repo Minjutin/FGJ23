@@ -8,6 +8,8 @@ public class Tile : MonoBehaviour
     
     public Vector3 center { get; private set; }
 
+    public bool inited = false;
+
     public int up = 0, right = 0, down = 0, left = 0;
 
     public Dictionary<(int, int, int, int), Sprite> sprite;
@@ -20,6 +22,7 @@ public class Tile : MonoBehaviour
         right = 0;
         left = 0;
         down = 0;
+        inited = false;
         center = this.transform.position;
     }
 
