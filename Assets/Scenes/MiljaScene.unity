@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldWidth: 6
   fieldHeight: 6
+  tileSize: 0
   tileGO: {fileID: 5709565132315540875, guid: 22619d1b4047e144d8d56979701fc386, type: 3}
 --- !u!4 &555795002
 Transform:
@@ -163,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555795000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.273433, y: 4.7638035, z: -1.9575642}
+  m_LocalPosition: {x: -19.2, y: 15.1, z: -1.9575642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -15,18 +15,14 @@ public class Tile : MonoBehaviour
     public Dictionary<(bool, bool, bool, bool), Sprite> sprite;
 
     //Basic constructor
-    public Tile(Vector3 _center)
-    {
-        center = _center;
-    }
 
-    public Tile(bool _up, bool _right, bool _down, bool _left, Vector3 _center)
+    private void Awake()
     {
-        up = _up;
-        right = _right;
-        left = _left;
-        down = _down;
-        center = _center;
+        up = false;
+        right = false;
+        left = false;
+        down = false;
+        center = this.transform.position;
     }
 
     public void OpenSide(Side open)
