@@ -16,17 +16,21 @@ public class PlayerController : MonoBehaviour
     Collider other;
     bool entered;
 
+    Animator anim;
 
     void Start()
     {
         orientation = this.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        anim = this.GetComponent<Animator>();
     }
 
     private void OnEnable()
     {
         transform.position =  new Vector3(transform.position.x,-8,transform.position.z);
+        entered = false;
     }
 
     private void Update()
@@ -45,6 +49,15 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
+        if (Input.anyKey)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && entered)
         {
             StartCoroutine(FindObjectOfType<GameManager>().Open2D(other));
@@ -55,7 +68,7 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
 
-        rb.AddForce(orientation.forward*verticalInput*moveSpeed, ForceMode.Acceleration);
+        rb.AddForce(-orientation.right*verticalInput*moveSpeed, ForceMode.Acceleration);
         transform.Rotate(Vector3.up * Spin * horizontalInput*Time.deltaTime);
 
         if (verticalInput ==0)
