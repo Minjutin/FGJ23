@@ -8,8 +8,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject GAME3D, GAME2D, chooseCan, tweetCan, cam2D;
     public SecretManager SM;
+    public AudioPlayer AP;
+
+    public int points= 0;
 
     [SerializeField] GameObject timerGO;
+    [SerializeField] GameObject pointsGO;
 
     int timer = 345;
 
@@ -17,13 +21,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        pointsGO.GetComponent<TextMeshProUGUI>().text = "Points " + 0;
         SM = FindObjectOfType<SecretManager>();
+        AP = FindObjectOfType<AudioPlayer>();
+        AP.PlayNormal();
         StartCoroutine(Timer());
     }
 
     // Update is called once per frame
     public void Open3D()
     {
+        AP.PlayNormal();
         timeOn = true;
         SM.ClearCollected();
         GAME3D.SetActive(true);
@@ -33,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Open2D(Collider other)
     {
+        AP.PlayBrain();
         GAME2D.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         Destroy(other.gameObject);
@@ -42,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void OpenChoice()
     {
-        if(SM.collectedSecrets.Count > 0)
+        if (SM.collectedSecrets.Count > 0)
         {
             chooseCan.SetActive(true);
         }
@@ -55,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void OpenTweet()
     {
+        AP.PlayMenu();
         timeOn = false;
         tweetCan.SetActive(true);
         chooseCan.SetActive(false);
@@ -77,6 +87,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void AddPoints(int tier)
+    {
+        points += tier * 2;
+        pointsGO.GetComponent<TextMeshProUGUI>().text = "Points " + points;
     }
 
 }

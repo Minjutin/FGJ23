@@ -175,13 +175,15 @@ public class SecretManager : MonoBehaviour
         int tier = 0;
         int tierHelp = Random.Range(0, 100);
 
+        //Debug.Log(tierHelp);
+
         if (tierHelp < 35)
             tier = 1;
-        else if (tierHelp < 68)
+        else if (tierHelp < 70)
             tier = 2;
-        else if (tierHelp < 95)
+        else if (tierHelp < 93)
             tier = 3;
-        else
+        else 
             tier = 4;
 
         string secret;
@@ -202,7 +204,8 @@ public class SecretManager : MonoBehaviour
                 
             case 4:
                 secret = tier4[Random.Range(0, tier4.Length)];
-                return (tier,secret);
+                //Debug.Log(tier + secret);
+                return (tier, secret);
                 
             default:
                 return (0, "");

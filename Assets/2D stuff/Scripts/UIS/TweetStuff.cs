@@ -95,18 +95,20 @@ public class TweetStuff : MonoBehaviour
         switch (tier)
         {
             case 1:
-                pointMessage = "Tier 1 secret:\nThat's it? That's not even a real secret!";
+                pointMessage = "Tier 1 secret:\nThat's it? That's not even a real secret!\n+2 points";
                 break;
             case 2:
-                pointMessage = "Tier 2 secret:\nAnd this person is in charge of our future?!";
+                pointMessage = "Tier 2 secret:\nAnd this person is in charge of our future?!\n+4 points";
                 break;
             case 3:
-                pointMessage = "Tier 3 secret:\nScandalous! This person is truly a monster!";
+                pointMessage = "Tier 3 secret:\nScandalous! This person is truly a monster!\n+6 points";
                 break;
             case 4:
-                pointMessage = "ULTRA SECRET!\nThey'll be immediately exiled from the White House of Helsinki!";
+                pointMessage = "ULTRA SECRET!\nThey'll be immediately exiled from the White House of Helsinki!\n+8 points";
                 break;
         }
+
+        GM.AddPoints(tier);
         points.GetComponent<TextMeshProUGUI>().text = pointMessage;
 
 
