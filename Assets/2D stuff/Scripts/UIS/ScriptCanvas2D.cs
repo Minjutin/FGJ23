@@ -8,10 +8,15 @@ public class ScriptCanvas2D : MonoBehaviour
     TextMeshProUGUI textUGUI;
     SecretManager SM;
 
-    void Start()
+    void Awake()
     {
         textUGUI = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         SM = FindObjectOfType<SecretManager>();
+    }
+
+    private void OnEnable()
+    {
+        EditText();
     }
 
     // Update is called once per frame

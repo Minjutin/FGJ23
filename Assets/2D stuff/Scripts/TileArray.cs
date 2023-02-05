@@ -14,6 +14,8 @@ public class TileArray : MonoBehaviour
     public Tile[,] tileScripts { get; private set; }
 
 
+    bool init = false;
+
     [SerializeField] GameObject tileGO;
 
     [SerializeField] UpdateTileSprite spriteUpdater; 
@@ -29,11 +31,24 @@ public class TileArray : MonoBehaviour
 
         //Other
         leftTilePos = this.transform.position;
+
+        initializeArray();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        initializeArray();
+        if (init)
+        {
+            //Clear tiles
+            foreach(Tile i in tileScripts)
+            {
+                i.inited = false;
+                i.EditOpen((0,0,0,0));
+                spriteUpdater.UpdateSprite(i);
+            }
+
+            StartCoroutine(OpenPath());
+        }
     }
 
     //Create array of tiles
@@ -44,6 +59,7 @@ public class TileArray : MonoBehaviour
             for(int j = 0; j < fieldHeight; j++)
             {
                 tileGO.name = "Tile [" + i + "," + j + "]";
+                tileGO.layer = LayerMask.NameToLayer("2d");
                 tileGOs[i, j] = 
                 Instantiate(tileGO, leftTilePos + new Vector3(tileSize * i, -tileSize * j, 0), Quaternion.identity,this.transform) as GameObject;
                 tileScripts[i, j] = tileGOs[i, j].GetComponent<Tile>();
@@ -51,6 +67,7 @@ public class TileArray : MonoBehaviour
         }
 
         StartCoroutine(OpenPath());
+        init = true;
     }
 
     //Randomly open the paths in the array

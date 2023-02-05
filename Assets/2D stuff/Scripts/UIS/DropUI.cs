@@ -10,7 +10,7 @@ public class DropUI : MonoBehaviour
     (int, string) chosen;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
          SM = FindObjectOfType<SecretManager>();
 
@@ -35,6 +35,8 @@ public class DropUI : MonoBehaviour
 
         drop.ClearOptions();
         drop.AddOptions(bois);
+
+        SM.chosen = SM.collectedSecrets[0];
 
     }
     //Ouput the new value of the Dropdown into Text

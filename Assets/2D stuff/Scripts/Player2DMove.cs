@@ -13,11 +13,12 @@ public class Player2DMove : MonoBehaviour
 
     [SerializeField] Tile currentTile, nextTile;
 
-    string key = "down";
+    string key = "right";
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        key = "right";
         tileArray = this.GetComponent<TileArray>();
         player = GameObject.Find("Player");  
         StartCoroutine(Move());
@@ -27,19 +28,19 @@ public class Player2DMove : MonoBehaviour
     {
         
         //Check the latest direction
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             key = "left";
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) 
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) 
         {
             key = "right";
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) 
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) 
         {
             key = "down";
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) 
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) )
         {
             key = "up";
         }
@@ -56,7 +57,7 @@ public class Player2DMove : MonoBehaviour
 
     IEnumerator Move()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         x = tileArray.fieldWidth / 2;
         y = 0;
@@ -64,6 +65,8 @@ public class Player2DMove : MonoBehaviour
         currentTile = tileArray.tileScripts[x, y];
 
         player.transform.position = currentTile.center;
+
+        yield return new WaitForSeconds(0.7f);
 
         //Start plah plah
         while (true)
@@ -86,11 +89,9 @@ public class Player2DMove : MonoBehaviour
                         else if (x == tileArray.fieldWidth / 2 &&
                         y == 0)
                         {
-                            yield return BasicLerp(player, currentTile.center, currentTile.center + new Vector3(0,8,0), 0.6f);
+                            yield return BasicLerp(player, currentTile.center, currentTile.center + new Vector3(0,8,0), 0.3f);
 
-                            player.SetActive(false);
-                            chooseCanvas.SetActive(true);
-
+                            FindObjectOfType<GameManager>().OpenChoice();
                             yield break;
                         }
 
