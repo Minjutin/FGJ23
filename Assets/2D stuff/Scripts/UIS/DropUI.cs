@@ -25,7 +25,7 @@ public class DropUI : MonoBehaviour
 
         List<string> bois = new List<string>();
 
-        Debug.Log(SM.collectedSecrets.Count);
+        //Debug.Log(SM.collectedSecrets.Count);
 
         foreach ((int,string) i in SM.collectedSecrets)
         {

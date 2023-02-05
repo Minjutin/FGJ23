@@ -6,11 +6,13 @@ using TMPro;
 public class TweetStuff : MonoBehaviour
 {
 
-    [SerializeField] GameObject tweet, points;
+    [SerializeField] GameObject tweet, points, prevTweet;
     GameManager GM;
     string username = "@paivi";
 
-    bool enabled = false;
+    bool enabledIs = false;
+
+    string previousMesage;
 
     List<string> availabeNames;
 
@@ -38,10 +40,23 @@ public class TweetStuff : MonoBehaviour
     "@Peppaflation",
     "@SaleN48" };
 
+    string[] startMessages = {"Are you aware that ",
+    "Can you believe that ",
+    "HUGE NEWS! ",
+    "Grand reveal: ",
+    "HAHAHA did you know that ",
+    "Lmaooo I heard that ",
+    "Could you guess that ",
+    "It's true! ",
+    "I just learnt that ",
+    "Little exposé: ",
+    "Fun fact: ",
+    "The 8-ball tells you: ",
+    "A bird told me that " };
 
     void OnEnable()
     {
-        if (!enabled)
+        if (!enabledIs)
         {
             availabeNames = new List<string>();
 
@@ -50,8 +65,12 @@ public class TweetStuff : MonoBehaviour
                 availabeNames.Add(i);
             }
         }
+        if (enabledIs)
+        {
+            prevTweet.GetComponent<TextMeshProUGUI>().text = previousMesage;
+        }
 
-        enabled = true;
+        enabledIs = true;
 
         GM = FindObjectOfType<GameManager>();
 
@@ -61,23 +80,10 @@ public class TweetStuff : MonoBehaviour
         availabeNames.RemoveAt(nameInt);
 
         //Randomize message
-        int mesgID = Random.Range(0, 4);
-        string message = "";
-        switch (mesgID)
-        {
-            case 0:
-                message = "Hello! Did you know that " + username + " " + GM.SM.chosen.Item2 + "??";
-                break;
-            case 1:
-                message = "MISJFLSDKJFSD " + username + " " + GM.SM.chosen.Item2 + "!!";
-                break;
-            case 2:
-                message = "MISJFLSDKJFSD " + username + " " + GM.SM.chosen.Item2 + "!!";
-                break;
-            case 3:
-                message = "MISJFLSDKJFSD " + username + " " + GM.SM.chosen.Item2 + "!!";
-                break;
-        }
+        int mesgID = Random.Range(0, startMessages.Length);
+        string message = startMessages[mesgID]+username+" "+GM.SM.chosen.Item2;
+
+        previousMesage = message;
 
 
         tweet.GetComponent<TextMeshProUGUI>().text = message;
@@ -102,5 +108,7 @@ public class TweetStuff : MonoBehaviour
                 break;
         }
         points.GetComponent<TextMeshProUGUI>().text = pointMessage;
+
+
     }
 }

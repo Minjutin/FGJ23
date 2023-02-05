@@ -1267,6 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweet: {fileID: 596175010}
   points: {fileID: 2142202686}
+  prevTweet: {fileID: 1452108748}
 --- !u!1 &1189482048 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2987526950988805155, guid: 699c670392726ee4f82f1752734634d5, type: 3}
