@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_text: Click the box to choose the secret you want to publish
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6bc5b08ec284e524793b685f27d5f337, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 8013078772892965250, guid: 6bc5b08ec284e524793b685f27d5f337, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2631,7 +2631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4037383849303105915, guid: 2f09d15dac754af4294c7db78b0487f6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4037383849303105919, guid: 2f09d15dac754af4294c7db78b0487f6, type: 3}
       propertyPath: m_Pivot.x

@@ -286,8 +286,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: THE WHITE HOUSE OF HELSINKI
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6bc5b08ec284e524793b685f27d5f337, type: 2}
+  m_sharedMaterial: {fileID: 8013078772892965250, guid: 6bc5b08ec284e524793b685f27d5f337, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -703,8 +703,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: invade
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6bc5b08ec284e524793b685f27d5f337, type: 2}
+  m_sharedMaterial: {fileID: 8013078772892965250, guid: 6bc5b08ec284e524793b685f27d5f337, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -932,8 +932,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: In the cold cold Helsinki, there lays the root of all evil...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6bc5b08ec284e524793b685f27d5f337, type: 2}
+  m_sharedMaterial: {fileID: 8013078772892965250, guid: 6bc5b08ec284e524793b685f27d5f337, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
