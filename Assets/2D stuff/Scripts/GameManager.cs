@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject timerGO;
     [SerializeField] GameObject pointsGO;
+    [SerializeField] GameObject endCanvas;
 
-    int timer = 345;
+    int timer = 365;
 
     bool timeOn = true;
 
@@ -83,7 +84,13 @@ public class GameManager : MonoBehaviour
 
             if(timer < 0)
             {
-                //TODO END GAME
+                GAME3D.SetActive(false);
+                GAME2D.SetActive(false);
+                chooseCan.SetActive(false);
+                tweetCan.SetActive(false);
+
+                cam2D.SetActive(true);
+                endCanvas.SetActive(true);
             }
         }
 

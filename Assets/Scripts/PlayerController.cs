@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Walking", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && entered)
+        if ( (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))&& entered)
         {
             StartCoroutine(FindObjectOfType<GameManager>().Open2D(other));
             StartCoroutine(BasicLerp(this.gameObject, transform.position, transform.position + new Vector3(0, 25, 0), 0.3f));
