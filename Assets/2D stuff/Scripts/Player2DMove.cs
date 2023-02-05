@@ -46,7 +46,7 @@ public class Player2DMove : MonoBehaviour
         }
 
         //Check if it's a dead end
-        if (Input.GetKeyDown(KeyCode.Space) && currentTile.OpenCount()==1 && currentTile.hasSecret)
+        if (currentTile != null && currentTile.OpenCount()==1 && currentTile.hasSecret)
         {
             (int, string) newSecret = FindObjectOfType<SecretManager>().GetNewSecret();
 

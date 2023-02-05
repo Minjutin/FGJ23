@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public Transform orientation;
 
+    public GameObject helpCanvas;
+
     Vector3 moveDirection;
 
     Rigidbody rb;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         transform.position =  new Vector3(transform.position.x,-8,transform.position.z);
         entered = false;
+        helpCanvas.SetActive(false);
     }
 
     private void Update()
@@ -93,12 +96,14 @@ public class PlayerController : MonoBehaviour
     {
 
         other = _other;
-        entered = true;       
+        entered = true;
+        helpCanvas.SetActive(true);
     }
 
     private void OnTriggerExit(Collider _other)
     {
         entered = false;
+        helpCanvas.SetActive(false);
     }
 
     public IEnumerator BasicLerp(GameObject objectToLerp, Vector3 start, Vector3 end, float lerpDuration)

@@ -8,7 +8,7 @@ public class StartGamey : MonoBehaviour
 
     [SerializeField] GameObject cat;
     [SerializeField] GameObject house;
-    [SerializeField] GameObject startButton;
+    [SerializeField] GameObject startButton, tutorialCanvas;
 
     // Update is called once per frame
     public void StartGame()
@@ -20,7 +20,7 @@ public class StartGamey : MonoBehaviour
     IEnumerator Startiee()
     {
         yield return BasicLerp(cat, cat.transform.position, house.transform.position+new Vector3(0,80f,0), 1f);
-        SceneManager.LoadScene("MiljaScene", LoadSceneMode.Single);
+        tutorialCanvas.SetActive(true);
     }
 
     public IEnumerator BasicLerp(GameObject objectToLerp, Vector3 start, Vector3 end, float lerpDuration)
