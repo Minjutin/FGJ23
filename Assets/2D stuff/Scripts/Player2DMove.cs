@@ -89,7 +89,7 @@ public class Player2DMove : MonoBehaviour
                         else if (x == tileArray.fieldWidth / 2 &&
                         y == 0)
                         {
-                            yield return BasicLerp(player, currentTile.center, currentTile.center + new Vector3(0,8,0), 0.6f);
+                            yield return BasicLerp(player, currentTile.center, currentTile.center + new Vector3(0,8,0), 0.3f);
 
                             FindObjectOfType<GameManager>().OpenChoice();
                             yield break;
