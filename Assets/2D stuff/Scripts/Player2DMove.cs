@@ -122,7 +122,7 @@ public class Player2DMove : MonoBehaviour
 
             if (nextTile != null)
             {
-                yield return BasicLerp(player, currentTile.center, nextTile.center, 0.4f);
+                yield return BasicLerp(player, currentTile.center, nextTile.center, 0.3f);
 
                 currentTile = nextTile;
             }
