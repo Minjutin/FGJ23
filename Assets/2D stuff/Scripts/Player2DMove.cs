@@ -16,8 +16,9 @@ public class Player2DMove : MonoBehaviour
     string key = "right";
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        key = "right";
         tileArray = this.GetComponent<TileArray>();
         player = GameObject.Find("Player");  
         StartCoroutine(Move());
@@ -56,7 +57,7 @@ public class Player2DMove : MonoBehaviour
 
     IEnumerator Move()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         x = tileArray.fieldWidth / 2;
         y = 0;
@@ -64,6 +65,8 @@ public class Player2DMove : MonoBehaviour
         currentTile = tileArray.tileScripts[x, y];
 
         player.transform.position = currentTile.center;
+
+        yield return new WaitForSeconds(0.7f);
 
         //Start plah plah
         while (true)

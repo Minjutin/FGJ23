@@ -34,6 +34,11 @@ public class Tile : MonoBehaviour
         right = opens.Item2;
         down = opens.Item3;
         left = opens.Item4;
+
+        if(OpenCount() != 1)
+        {
+            removeSecret();
+        }
     }
 
     public void UpdateSprite(Sprite newSprite)

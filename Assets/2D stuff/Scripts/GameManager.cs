@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     public void Open3D()
     {
+        SM.ClearCollected();
         GAME3D.SetActive(true);
         cam2D.SetActive(false);
         tweetCan.SetActive(false);
@@ -32,7 +33,14 @@ public class GameManager : MonoBehaviour
 
     public void OpenChoice()
     {
-        chooseCan.SetActive(true);
+        if(SM.collectedSecrets.Count > 0)
+        {
+            chooseCan.SetActive(true);
+        }
+        else
+        {
+            Open3D();
+        }
         GAME2D.SetActive(false);
     }
 

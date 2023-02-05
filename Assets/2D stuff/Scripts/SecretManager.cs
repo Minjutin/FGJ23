@@ -117,4 +117,9 @@ public class SecretManager : MonoBehaviour
         collectedSecrets.Add(newSecret);
         FindObjectOfType<ScriptCanvas2D>().EditText();
     }
+
+    public void ClearCollected()
+    {
+        collectedSecrets.Clear();
+    }
 }
